@@ -8,8 +8,8 @@ export const ActiveAtom = atom({
 });
 
 export const deletedocAtom = atom({
-    key:"deletedocAtom",
-    default:""
+    key: "deletedocAtom",
+    default: ""
 })
 
 export const userAtom = atom({
@@ -17,13 +17,18 @@ export const userAtom = atom({
     default: selector({
         key: "userAtomselector",
         get: async () => {
-            const response = await axios.get(`${API_BASE_URL}/api/users/userdetails`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + localStorage.getItem("token")
-                }
-            });
-            return response.data;
+            try {
+                const response = await axios.get(`${API_BASE_URL}/api/users/userdetails`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + localStorage.getItem("token")
+                    }
+                });
+                return response.data;
+            } catch (error) {
+                console.error("Failed to fetch user details:", error);
+                return { name: "Guest", email: "" }; // Return default/empty user on error
+            }
         }
     })
 })

@@ -11,7 +11,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function useDocument(n) {
   const [documentdata, setDocumentdata] = useState([]);
 
-  
+
   useEffect(() => {
 
     const response = setInterval(() => {
@@ -22,7 +22,7 @@ function useDocument(n) {
         }
       }).then(res => {
         setDocumentdata(res.data);
-      })
+      }).catch(err => console.log(err))
     }, n * 1000)
 
     axios.get(`${API_BASE_URL}/api/document/getdocument`, {
@@ -33,7 +33,7 @@ function useDocument(n) {
     }).then(res => {
       setDocumentdata(res.data);
       console.log("data set succesfully")
-    })
+    }).catch(err => console.log(err))
 
 
     return () => {
@@ -46,19 +46,19 @@ function useDocument(n) {
 export default function Document() {
   const [isModalOpen, setModal] = useState(false);
   const docdata = useDocument(3);
-  const[docdetails, setDocument] = useState([]);
+  const [docdetails, setDocument] = useState([]);
 
-  useEffect(()=>{
-    if(docdata){
+  useEffect(() => {
+    if (docdata) {
       setDocument(docdata)
     }
   }, [docdata])
-  
 
- async function handleDeleteNote(id) {
+
+  async function handleDeleteNote(id) {
     try {
       setDocument(docdetails => docdetails.filter(note => note._id !== id));
-      
+
       const response = await axios({
         method: 'delete',
         url: `${API_BASE_URL}/api/document/deletedocument/${id}`,
@@ -67,7 +67,7 @@ export default function Document() {
           "Authorization": "Bearer " + localStorage.getItem("token")
         }
       });
-      
+
       console.log("Document deleted successfully:", response.data);
     } catch (error) {
       console.error("Error deleting document:", error);
@@ -99,9 +99,9 @@ export default function Document() {
         </div>
 
         <div className='ml-8'>
-       {docdetails.map( (item) =>(
-      <Documentbox id={item._id} title={item.title} description={item.description} category={item.category} ondeonDelete={() => handleDeleteNote(item._id)}/>
-       ))}
+          {docdetails.map((item) => (
+            <Documentbox key={item._id} id={item._id} title={item.title} description={item.description} category={item.category} ondeonDelete={() => handleDeleteNote(item._id)} />
+          ))}
 
         </div>
 

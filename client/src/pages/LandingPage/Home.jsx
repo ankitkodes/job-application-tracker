@@ -6,20 +6,14 @@ import Review from './Review';
 import Features from './Features';
 import Pricing from './Pricing';
 import Questions from './Questions';
-import { Box, Grid, Button } from '@mui/material';
-import p1 from "../../../public/images/1.png";
-
-
 
 export default function Home() {
     
     return (
         <>
-        <div className='bg-gray-50 ml-4'>
+        <div className='bg-white'>
         <Header />
-           {/* <JobTracksection /> */}
            <TrackStep />
-           {/* <Review /> */}
            <Features />
            <Pricing />
            <Questions />                        

@@ -7,9 +7,9 @@ export default function Sidebar() {
 
   const setActiveSegment = useSetRecoilState(ActiveAtom);
   const user = useRecoilValue(userAtom);
-  
 
-  function loginout(){
+
+  function loginout() {
     localStorage.removeItem("token");
     window.open("/", "_self")
   }
@@ -24,18 +24,18 @@ export default function Sidebar() {
             <span className="material-symbols-outlined align-bottom">home</span>
             <span className="pl-1 align-bottom text-base font-[600] cursor-pointer">Home</span>
           </p>
-          {/* <p
-            className="mt-3 text-t1" onClick={() => setActiveSegment("skilltracker")}
+          <p
+            className="mt-3 text-t1 hover:bg-gray-100 p-1 rounded cursor-pointer" onClick={() => setActiveSegment("skilltracker")}
           >
             <span className="material-symbols-outlined align-bottom">description</span>
-            <span className="pl-1 align-bottom text-base font-[600] cursor-pointer">Skill Tracker</span>
-          </p> */}
-          {/* <p
-            className="mt-3 text-t1" onClick={() => setActiveSegment("taskscheduler")}
+            <span className="pl-1 align-bottom text-base font-[600]">Skill Tracker</span>
+          </p>
+          <p
+            className="mt-3 text-t1 hover:bg-gray-100 p-1 rounded cursor-pointer" onClick={() => setActiveSegment("taskscheduler")}
           >
             <span className="material-symbols-outlined align-bottom">hotel_class</span>
-            <span className="pl-1 align-bottom text-base font-[600] cursor-pointer">Task Scheduler</span>
-          </p> */}
+            <span className="pl-1 align-bottom text-base font-[600]">Task Scheduler</span>
+          </p>
 
           <p
             className="mt-3 text-t1" onClick={() => setActiveSegment("profile")}
@@ -86,7 +86,7 @@ export default function Sidebar() {
                 <button className="" aria-label="Settings" onClick={loginout}>
                   <span className="material-symbols-outlined  align-bottom">logout</span>
                 </button>
-                
+
 
               </div>
 

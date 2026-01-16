@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   content: [
     './src/**/*.{html,js,jsx,ts,tsx}', // Scan all relevant files in the src directory
     './public/index.html',             // Include the main HTML file if needed
